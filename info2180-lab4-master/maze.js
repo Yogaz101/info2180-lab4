@@ -1,9 +1,10 @@
 window.onload = function () {
-    var border = document.getElementById('boundary1');
-    var all= document.querySelectorAll('.boundary');
-    var thig= document.getElementsByClassName('.boundary');
-    var finish= document.getElementById('end');
-    var start= document.getElementById('start');
+    const border = document.getElementById('boundary1');
+    const all= document.querySelectorAll('.boundary');
+    const thig= document.getElementsByClassName('.boundary');
+    const finish= document.getElementById('end');
+    const start= document.getElementById('start');
+    const status= document.getElementById('status');
     
     function red(obj){
         obj.addEventListener("mouseover", function(){ obj.className += ' youlose'});
@@ -30,7 +31,12 @@ window.onload = function () {
     function restart(){
             start.addEventListener("click", function(){ all.forEach(function (y){
                 y.className = 'boundary'
+                status.textContent='Move your mouse over the S to begin'
             })});
+    }
+    
+    function setStatus(){
+            finish.addEventListener("mouseover", function(){ status.textContent='You win!'})
     }
     
     
@@ -38,4 +44,5 @@ window.onload = function () {
     changeAll();
     /*youWin();*/
     restart();
+    setStatus();
 }
