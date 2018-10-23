@@ -48,6 +48,14 @@ window.onload = function () {
              });
          });
      }
+    
+    function cheat(){
+        all.forEach(function (p){
+            p.addEventListener("mouseleave", function(){
+                alert('where are u going');
+            });
+        });
+    }
              
     
     
