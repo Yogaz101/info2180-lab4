@@ -5,6 +5,7 @@ window.onload = function () {
     const finish= document.getElementById('end');
     const start= document.getElementById('start');
     const status= document.getElementById('status');
+    const last= document.getElementsByClassName('.example');
     
     function red(obj){
         obj.addEventListener("mouseover", function(){ obj.className += ' youlose'});
@@ -16,33 +17,43 @@ window.onload = function () {
         });
     }
     
-    function youWin(){
-        var check=false;
-        all.forEach(function (y){
-            if (y.classList.contains("youlose")){
-                console.log("it is true");
-            }
-            else{
-                finish.addEventListener("mouseover", function(){ alert("You win!")});
-            }
-        });
-    }
-    
+   
     function restart(){
+            last.className="";
             start.addEventListener("click", function(){ all.forEach(function (y){
-                y.className = 'boundary'
-                status.textContent='Move your mouse over the S to begin'
+                y.className = 'boundary';
+                status.textContent='Move your mouse over the "S" to begin'
             })});
     }
     
-    function setStatus(){
-            finish.addEventListener("mouseover", function(){ status.textContent='You win!'})
+    function setStatus(y){
+            status.textContent=y;
     }
+    
+     function youWin(){
+         finish.addEventListener("mouseover", function(){
+             var change=0;
+             all.forEach(function (y){
+                 if(y.classList.contains("youlose")){
+                     change++;
+                     if(change>0){
+                         setStatus('You Lose!');
+                     }
+                 }
+                 else{
+                     if(change==0){
+                         setStatus('You Win!');
+                     }
+                 }
+             });
+         });
+     }
+             
+    
     
     
     red(border);
     changeAll();
-    /*youWin();*/
+    youWin();
     restart();
-    setStatus();
 }
